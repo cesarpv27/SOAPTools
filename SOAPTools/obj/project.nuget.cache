@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "stuGj3/I8vPH7X3xU8H8o/MDywJm65S8yVi/aCeL1YElHZDOtia2gnTM8RlaekPpJRt/91EvjMEtLJd4VrIQ+g==",
+  "dgSpecHash": "J7LqWxqp4W6YptX5dXJ7L4EaPTqGC6mQ5v6qmDk2QyFSn12xHQY3pLVdjWlXWoJYbw+VQr2Zh2rezj/MITs3rA==",
   "success": true,
   "projectFilePath": "C:\\Users\\wolf\\Documents\\Visual Studio Projects\\Git\\SOAPTools\\SOAPTools\\SOAPTools.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

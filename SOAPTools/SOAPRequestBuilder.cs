@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace SOAPTools.Core
+namespace SOAPTools
 {
     public class SOAPRequestBuilder
     {

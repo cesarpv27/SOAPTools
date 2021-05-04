@@ -1,12 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>César Palomino Vila</Authors>
-    <Company>César Palomino VilaCésar Palomino Vila</Company>
+    <Company>César Palomino Vila</Company>
     <Product>SOAPRequestBuilder</Product>
-    <Description>To build SOAP request</Description>
-    <PackageLicenseExpression>https://licenses.nuget.org/MIT</PackageLicenseExpression>
+    <Description>To build a SOAP request. Target framework: .Net Standard 2.0</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/cesarpv27/SOAPTools</PackageProjectUrl>
+    <PackageId>SOAPTools.NetStandard.SOAPRequestBuilder</PackageId>
   </PropertyGroup>
 
 </Project>
