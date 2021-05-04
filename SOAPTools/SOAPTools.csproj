@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>César Palomino Vila</Authors>
+    <Company>César Palomino VilaCésar Palomino Vila</Company>
+    <Product>SOAPRequestBuilder</Product>
+    <Description>To build SOAP request</Description>
+    <PackageLicenseExpression>https://licenses.nuget.org/MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+</Project>
