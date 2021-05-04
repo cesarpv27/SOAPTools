@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOAPTools", "SOAPTools\SOAPTools.csproj", "{798E770A-C9DE-4B2F-8B81-B0362F5B219A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOAPTools", "SOAPTools\SOAPTools.csproj", "{14A4AFF1-ABD0-4F17-AE64-220E22B18A22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{798E770A-C9DE-4B2F-8B81-B0362F5B219A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{798E770A-C9DE-4B2F-8B81-B0362F5B219A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{798E770A-C9DE-4B2F-8B81-B0362F5B219A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{798E770A-C9DE-4B2F-8B81-B0362F5B219A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14A4AFF1-ABD0-4F17-AE64-220E22B18A22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A4AFF1-ABD0-4F17-AE64-220E22B18A22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14A4AFF1-ABD0-4F17-AE64-220E22B18A22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14A4AFF1-ABD0-4F17-AE64-220E22B18A22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
