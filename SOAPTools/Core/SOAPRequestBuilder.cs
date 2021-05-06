@@ -7,17 +7,17 @@ namespace SOAPTools.Core
     public class SOAPRequestBuilder
     {
         static SOAPRequestBuilder _SOAPRequestBuilder;
-        public static string BuildRequest(dynamic objRequest, string methodName)
+        public static string STBuildEnvelope(dynamic objRequestParams, string methodName)
         {
             if (_SOAPRequestBuilder == null)
                 _SOAPRequestBuilder = new SOAPRequestBuilder();
 
-            return _SOAPRequestBuilder._BuildRequest(objRequest, methodName);
+            return _SOAPRequestBuilder.BuildEnvelope(objRequestParams, methodName);
         }
 
-        public virtual string _BuildRequest(dynamic objRequest, string methodName)
+        public virtual string BuildEnvelope(dynamic objRequestParams, string methodName)
         {
-            return BuildEnvelope(BuildHeader(string.Empty) + BuildBody(BuildSoapMethod(methodName, BuildSoapParams(objRequest))));
+            return BuildEnvelope(BuildHeader(string.Empty) + BuildBody(BuildSoapMethod(methodName, BuildSoapParams(objRequestParams))));
         }
 
         #region Build soapenv
@@ -26,7 +26,7 @@ namespace SOAPTools.Core
         {
             ThrowIfNullOrEmpty(innerText);
 
-            return BuildSoapenv(Envelope, innerText, SoapEnvelopeXmlnsSoapenvAttr, SoapEnvelopeXmlnstemAttr);
+            return BuildSoapenv(Envelope, innerText, SoapEnvelopeXmlnsSoapenvAttr, SoapEnvelopeXmlnsTemAttr);
         }
 
         protected virtual string BuildHeader(string innerText)
@@ -131,14 +131,14 @@ namespace SOAPTools.Core
         }
         public virtual string SoapEnvelopeXmlnsSoapenvAttrValue { get; set; } = "http://schemas.xmlsoap.org/soap/envelope/";
 
-        protected virtual string SoapEnvelopeXmlnstemAttr
+        protected virtual string SoapEnvelopeXmlnsTemAttr
         {
             get
             {
-                return $"{Xmlns}:{Tem}='{SoapEnvelopeXmlnstemAttrValue}'";
+                return $"{Xmlns}:{Tem}='{SoapEnvelopeXmlnsTemAttrValue}'";
             }
         }
-        public virtual string SoapEnvelopeXmlnstemAttrValue { get; set; } = "http://tempuri.org/";
+        public virtual string SoapEnvelopeXmlnsTemAttrValue { get; set; } = "http://tempuri.org/";
 
         protected virtual void ThrowIfNullOrEmpty(string value, string paramName = null)
         {
