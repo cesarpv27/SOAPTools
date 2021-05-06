@@ -9,8 +9,8 @@
             {  
                 return SOAPRequestBuilder.STRequestSOAPService(new
                 { 
-                    intA = A,
-                    intB = B
+                    intA = 1,
+                    intB = 1
                 }, url, action);
             }
             
