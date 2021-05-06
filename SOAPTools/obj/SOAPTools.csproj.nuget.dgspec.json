@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\Users\\wolf\\Documents\\Visual Studio Projects\\Git\\SOAPTools\\SOAPTools\\SOAPTools.csproj": {
-      "version": "1.0.4",
+      "version": "1.0.5",
       "restore": {
         "projectUniqueName": "C:\\Users\\wolf\\Documents\\Visual Studio Projects\\Git\\SOAPTools\\SOAPTools\\SOAPTools.csproj",
         "projectName": "SOAPTools.Core.SOAPRequestBuilder",

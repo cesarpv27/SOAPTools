@@ -15,12 +15,12 @@ namespace SOAPTools.Core
                 soapEnvelope.Save(stream);
         }
 
-        public static void BuildNLoadSOAPEnvelope(this XmlDocument _xmlDoc, dynamic dynRequestParams, string action)
+        public static void BuildNLoadSOAPEnvelope<T>(this XmlDocument _xmlDoc, T paramsContainer, string action) where T: class
         {
-            ThrowIfNull(dynRequestParams, nameof(dynRequestParams));
+            ThrowIfNull(paramsContainer, nameof(paramsContainer));
             ThrowIfNullOrEmpty(action, nameof(action));
 
-            _xmlDoc.LoadXml(SOAPRequestBuilder.STBuildEnvelope(dynRequestParams, action));
+            _xmlDoc.LoadXml(SOAPRequestBuilder.STBuildEnvelope(paramsContainer, action));
         }
 
         public static string ReadResponse(this WebResponse response)

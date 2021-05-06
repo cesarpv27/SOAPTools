@@ -55,6 +55,32 @@ namespace TestingSOAPTools
 
         public static string AddUsingWebService(int A, int B)
         {
+            return AddUsingWebService(new
+            {
+                intA = A,
+                intB = B
+            });
+        }
+
+        public static string AddUsingWebService(object paramsContainer)
+        {
+            var _xmlDocSOAPEnvelope = new XmlDocument();
+            _xmlDocSOAPEnvelope.BuildNLoadSOAPEnvelope(paramsContainer, action);
+
+            var request = _xmlDocSOAPEnvelope.CreateWebRequest(url);
+
+            using WebResponse response = request.GetResponse();
+            return response.ReadResponse();
+        }
+
+        /// <summary>
+        /// Option 2
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
+        public static string AddUsingWebService_2(int A, int B)
+        {
             var _xmlDocSOAPEnvelope = new XmlDocument();
             _xmlDocSOAPEnvelope.BuildNLoadSOAPEnvelope(
                 new
@@ -70,7 +96,13 @@ namespace TestingSOAPTools
             return response.ReadResponse();
         }
 
-        public static string AddUsingWebService_2(int A, int B)
+        /// <summary>
+        /// Option 3
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
+        public static string AddUsingWebService_3(int A, int B)
         {
             var _xmlDocSOAPEnvelope = CreateSOAPEnvelope(A, B, action);
 

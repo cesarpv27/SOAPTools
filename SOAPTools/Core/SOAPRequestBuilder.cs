@@ -7,17 +7,17 @@ namespace SOAPTools.Core
     public class SOAPRequestBuilder
     {
         static SOAPRequestBuilder _SOAPRequestBuilder;
-        public static string STBuildEnvelope(dynamic dynRequestParams, string action)
+        public static string STBuildEnvelope<T>(T paramsContainer, string action) where T: class
         {
             if (_SOAPRequestBuilder == null)
                 _SOAPRequestBuilder = new SOAPRequestBuilder();
 
-            return _SOAPRequestBuilder.BuildEnvelope(dynRequestParams, action);
+            return _SOAPRequestBuilder.BuildEnvelope(paramsContainer, action);
         }
 
-        public virtual string BuildEnvelope(dynamic dynRequestParams, string action)
+        public virtual string BuildEnvelope<T>(T paramsContainer, string action) where T: class
         {
-            return BuildEnvelope(BuildHeader(string.Empty) + BuildBody(BuildSoapAction(action, BuildSoapParams(dynRequestParams))));
+            return BuildEnvelope(BuildHeader(string.Empty) + BuildBody(BuildSoapAction(action, BuildSoapParams(paramsContainer))));
         }
 
         #region Build soapenv
@@ -50,12 +50,12 @@ namespace SOAPTools.Core
 
         #region Build soap params
 
-        protected virtual string BuildSoapParams<T>(T objRequestParams)
+        protected virtual string BuildSoapParams<T>(T paramsContainer) where T: class
         {
-            if (objRequestParams == null)
-                throw new ArgumentNullException(nameof(objRequestParams));
+            if (paramsContainer == null)
+                throw new ArgumentNullException(nameof(paramsContainer));
 
-            return BuildSoapParams(objRequestParams, objRequestParams.GetType().GetProperties());
+            return BuildSoapParams(paramsContainer, paramsContainer.GetType().GetProperties());
         }
 
         protected virtual string BuildSoapParams<T>(T objRequest, PropertyInfo[] objProperties)
