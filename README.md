@@ -1,8 +1,27 @@
-# SOAPTools example
-
-            url: http://www.dneonline.com/calculator.asmx
-            action: Add
+# SOAPTools
+                  
+        url: http://www.dneonline.com/calculator.asmx
+        action: Add
             
+        Now making a SOAP request is as simple as this:
+        C#:    
+        public static string AddUsingWebService(int A, int B)
+        {
+            var _xmlDocSOAPEnvelope = new XmlDocument();
+            _xmlDocSOAPEnvelope.BuildNLoadSOAPEnvelope(
+                new
+                {
+                    intA = A,
+                    intB = B
+                }, 
+                action);
+
+            var request = _xmlDocSOAPEnvelope.CreateWebRequest(url);
+
+            using WebResponse response = request.GetResponse();
+            return response.GetResponse();
+        }
+                
             C#:
                 var xmlEnvelope = SOAPRequestBuilder.STBuildEnvelope(
                 new
@@ -47,3 +66,5 @@
                     intB
                 }, methodName);
                 
+              
+
