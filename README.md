@@ -55,7 +55,7 @@
             </soap:Envelope>
              
              
-            Also can:             
+            We can also:             
             C#:            
                 int intA = 1;
                 int intB = 1;
