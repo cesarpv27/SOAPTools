@@ -21,7 +21,7 @@
                 {
                     intA = 1,
                     intB = 1
-                }, methodName);
+                }, action);
                 
             Built envelope by SOAPRequestBuilder:
             
@@ -57,7 +57,7 @@
                 {
                     intA,
                     intB
-                }, methodName);
+                }, action);
                 
               
 
