@@ -19,17 +19,25 @@ namespace SOAPTools.Core
 
         #region RequestSOAPService
 
-        public static string STRequestSOAPService(object paramsContainer, string url, string action)
+        public static string STRequestSOAPService(object paramsContainer, string url, string action,
+            string header = DefaultConst.Header,
+            string contentType = DefaultConst.ContentType,
+            string accept = DefaultConst.Accept,
+            string httpMethod = DefaultConst.HttpMethod)
         {
-            return GetSOAPRequestBuilder().RequestSOAPService(paramsContainer, url, action);
+            return GetSOAPRequestBuilder().RequestSOAPService(paramsContainer, url, action, header, contentType, accept, httpMethod);
         }
 
-        public virtual string RequestSOAPService(object paramsContainer, string url, string action)
+        public virtual string RequestSOAPService(object paramsContainer, string url, string action,
+            string header = DefaultConst.Header,
+            string contentType = DefaultConst.ContentType,
+            string accept = DefaultConst.Accept,
+            string httpMethod = DefaultConst.HttpMethod)
         {
             var _xmlDocSOAPEnvelope = new XmlDocument();
             _xmlDocSOAPEnvelope.BuildNLoadSOAPEnvelope(paramsContainer, action);
 
-            var request = _xmlDocSOAPEnvelope.CreateWebRequest(url);
+            var request = _xmlDocSOAPEnvelope.CreateWebRequest(url, header, contentType, accept, httpMethod);
 
             using (WebResponse response = request.GetResponse())
                 return response.ReadResponse();

@@ -30,10 +30,10 @@ namespace SOAPTools.Core
         }
 
         public static HttpWebRequest CreateWebRequest(this XmlDocument _xmlDocSOAPEnvelope, string url,
-            string header = "SOAP:Action",
-            string contentType = "text/xml;charset=\"utf-8\"",
-            string accept = "text/xml",
-            string httpMethod = "POST")
+            string header = DefaultConst.Header,
+            string contentType = DefaultConst.ContentType,
+            string accept = DefaultConst.Accept,
+            string httpMethod = DefaultConst.HttpMethod)
         {
             var webRequest = (HttpWebRequest)WebRequest.Create(url);
             webRequest.InitializeWebRequest(header, contentType, accept, httpMethod);
@@ -44,10 +44,10 @@ namespace SOAPTools.Core
         }
 
         public static void InitializeWebRequest(this HttpWebRequest webRequest,
-            string header = "SOAP:Action",
-            string contentType = "text/xml;charset=\"utf-8\"",
-            string accept = "text/xml",
-            string httpMethod = "POST")
+            string header = DefaultConst.Header,
+            string contentType = DefaultConst.ContentType,
+            string accept = DefaultConst.Accept,
+            string httpMethod = DefaultConst.HttpMethod)
         {
             ThrowIfNullOrEmpty(header, nameof(header));
             ThrowIfNullOrEmpty(contentType, nameof(contentType));
