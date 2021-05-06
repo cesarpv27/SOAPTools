@@ -67,7 +67,7 @@ namespace TestingSOAPTools
             var request = _xmlDocSOAPEnvelope.CreateWebRequest(url);
 
             using WebResponse response = request.GetResponse();
-            return response.GetResponse();
+            return response.ReadResponse();
         }
 
         public static string AddUsingWebService_2(int A, int B)

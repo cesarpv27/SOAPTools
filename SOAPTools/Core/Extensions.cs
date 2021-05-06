@@ -23,7 +23,7 @@ namespace SOAPTools.Core
             _xmlDoc.LoadXml(SOAPRequestBuilder.STBuildEnvelope(dynRequestParams, action));
         }
 
-        public static string GetResponse(this WebResponse response)
+        public static string ReadResponse(this WebResponse response)
         {
             using (var _streamReader = new StreamReader(response.GetResponseStream()))
                 return _streamReader.ReadToEnd();
