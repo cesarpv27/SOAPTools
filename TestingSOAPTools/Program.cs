@@ -12,6 +12,8 @@ namespace TestingSOAPTools
         {
             Console.WriteLine(AddUsingWebService(1, 1));
 
+            // url: http://www.dneonline.com/calculator.asmx
+            // action: Add
             // Built envelope by SOAPRequestBuilder:
             /*
             <soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:tem='http://tempuri.org/'>
