@@ -19,7 +19,7 @@
             var request = _xmlDocSOAPEnvelope.CreateWebRequest(url);
 
             using WebResponse response = request.GetResponse();
-            return response.GetResponse();
+            return response.ReadResponse();
         }
                 
             C#:
