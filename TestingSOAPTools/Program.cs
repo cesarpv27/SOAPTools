@@ -55,22 +55,11 @@ namespace TestingSOAPTools
 
         public static string AddUsingWebService(int A, int B)
         {
-            return AddUsingWebService(new
+            return SOAPRequestBuilder.STRequestSOAPService(new
             {
                 intA = A,
                 intB = B
-            });
-        }
-
-        public static string AddUsingWebService(object paramsContainer)
-        {
-            var _xmlDocSOAPEnvelope = new XmlDocument();
-            _xmlDocSOAPEnvelope.BuildNLoadSOAPEnvelope(paramsContainer, action);
-
-            var request = _xmlDocSOAPEnvelope.CreateWebRequest(url);
-
-            using WebResponse response = request.GetResponse();
-            return response.ReadResponse();
+            }, url, action);
         }
 
         /// <summary>

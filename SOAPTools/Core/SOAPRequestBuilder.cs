@@ -1,24 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Xml;
+using System.Net;
 
 namespace SOAPTools.Core
 {
     public class SOAPRequestBuilder
     {
         static SOAPRequestBuilder _SOAPRequestBuilder;
-        public static string STBuildEnvelope<T>(T paramsContainer, string action) where T: class
+        private static SOAPRequestBuilder GetSOAPRequestBuilder()
         {
             if (_SOAPRequestBuilder == null)
                 _SOAPRequestBuilder = new SOAPRequestBuilder();
 
-            return _SOAPRequestBuilder.BuildEnvelope(paramsContainer, action);
+            return _SOAPRequestBuilder;
         }
 
-        public virtual string BuildEnvelope<T>(T paramsContainer, string action) where T: class
+        #region RequestSOAPService
+
+        public static string STRequestSOAPService(object paramsContainer, string url, string action)
+        {
+            return GetSOAPRequestBuilder().RequestSOAPService(paramsContainer, url, action);
+        }
+
+        public virtual string RequestSOAPService(object paramsContainer, string url, string action)
+        {
+            var _xmlDocSOAPEnvelope = new XmlDocument();
+            _xmlDocSOAPEnvelope.BuildNLoadSOAPEnvelope(paramsContainer, action);
+
+            var request = _xmlDocSOAPEnvelope.CreateWebRequest(url);
+
+            using (WebResponse response = request.GetResponse())
+                return response.ReadResponse();
+        }
+
+        #endregion
+
+        #region BuildEnvelope
+
+        public static string STBuildEnvelope<T>(T paramsContainer, string action) where T : class
+        {
+            return GetSOAPRequestBuilder().BuildEnvelope(paramsContainer, action);
+        }
+
+        public virtual string BuildEnvelope<T>(T paramsContainer, string action) where T : class
         {
             return BuildEnvelope(BuildHeader(string.Empty) + BuildBody(BuildSoapAction(action, BuildSoapParams(paramsContainer))));
         }
+
+        #endregion
 
         #region Build soapenv
 
