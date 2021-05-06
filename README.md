@@ -5,14 +5,14 @@
              
             Now making a SOAP request is as simple as this:
             C#:           
-            public static string AddUsingWebService(int A, int B)
-            {  
-                return SOAPRequestBuilder.STRequestSOAPService(new
-                { 
-                    intA = 1,
-                    intB = 1
-                }, url, action);
-            }
+                public static string AddUsingWebService(int A, int B)
+                {  
+                    return SOAPRequestBuilder.STRequestSOAPService(new
+                    { 
+                       intA = 1,
+                       intB = 1
+                    }, url, action);
+                }
             
             Using BuildEnvelope method:
             C#:
