@@ -7,17 +7,17 @@ namespace SOAPTools.Core
     public class SOAPRequestBuilder
     {
         static SOAPRequestBuilder _SOAPRequestBuilder;
-        public static string STBuildEnvelope(dynamic objRequestParams, string methodName)
+        public static string STBuildEnvelope(dynamic dynRequestParams, string action)
         {
             if (_SOAPRequestBuilder == null)
                 _SOAPRequestBuilder = new SOAPRequestBuilder();
 
-            return _SOAPRequestBuilder.BuildEnvelope(objRequestParams, methodName);
+            return _SOAPRequestBuilder.BuildEnvelope(dynRequestParams, action);
         }
 
-        public virtual string BuildEnvelope(dynamic objRequestParams, string methodName)
+        public virtual string BuildEnvelope(dynamic dynRequestParams, string action)
         {
-            return BuildEnvelope(BuildHeader(string.Empty) + BuildBody(BuildSoapMethod(methodName, BuildSoapParams(objRequestParams))));
+            return BuildEnvelope(BuildHeader(string.Empty) + BuildBody(BuildSoapAction(action, BuildSoapParams(dynRequestParams))));
         }
 
         #region Build soapenv
@@ -50,12 +50,12 @@ namespace SOAPTools.Core
 
         #region Build soap params
 
-        protected virtual string BuildSoapParams<T>(T objRequest)
+        protected virtual string BuildSoapParams<T>(T objRequestParams)
         {
-            if (objRequest == null)
-                throw new ArgumentNullException(nameof(objRequest));
+            if (objRequestParams == null)
+                throw new ArgumentNullException(nameof(objRequestParams));
 
-            return BuildSoapParams(objRequest, objRequest.GetType().GetProperties());
+            return BuildSoapParams(objRequestParams, objRequestParams.GetType().GetProperties());
         }
 
         protected virtual string BuildSoapParams<T>(T objRequest, PropertyInfo[] objProperties)
@@ -97,12 +97,12 @@ namespace SOAPTools.Core
 
         #endregion
 
-        protected virtual string BuildSoapMethod(string methodName, string innerText)
+        protected virtual string BuildSoapAction(string action, string innerText)
         {
-            ThrowIfNullOrEmpty(methodName);
+            ThrowIfNullOrEmpty(action);
             ThrowIfNullOrEmpty(innerText);
 
-            return BuildTem(methodName, innerText);
+            return BuildTem(action, innerText);
         }
 
         protected virtual string BuildTem(string name, string innerText)
@@ -143,7 +143,7 @@ namespace SOAPTools.Core
         protected virtual void ThrowIfNullOrEmpty(string value, string paramName = null)
         {
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(paramName);
+                throw new ArgumentException($"{(!string.IsNullOrEmpty(paramName) ? paramName : "String")} is null or empty");
         }
 
         #region Fixed properties

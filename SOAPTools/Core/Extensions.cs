@@ -9,13 +9,63 @@ namespace SOAPTools.Core
     {
         public static void InsertSOAPEnvelope(this HttpWebRequest webRequest, XmlDocument soapEnvelope)
         {
-            if (soapEnvelope == null)
-                throw new ArgumentNullException(nameof(soapEnvelope));
+            ThrowIfNull(soapEnvelope, nameof(soapEnvelope));
 
             using (Stream stream = webRequest.GetRequestStream())
-            {
                 soapEnvelope.Save(stream);
-            }
+        }
+
+        public static void BuildNLoadSOAPEnvelope(this XmlDocument _xmlDoc, dynamic dynRequestParams, string action)
+        {
+            ThrowIfNull(dynRequestParams, nameof(dynRequestParams));
+            ThrowIfNullOrEmpty(action, nameof(action));
+
+            _xmlDoc.LoadXml(SOAPRequestBuilder.STBuildEnvelope(dynRequestParams, action));
+        }
+
+        public static string GetResponse(this WebResponse response)
+        {
+            using (var _streamReader = new StreamReader(response.GetResponseStream()))
+                return _streamReader.ReadToEnd();
+        }
+
+        public static HttpWebRequest CreateWebRequest(this XmlDocument _xmlDocSOAPEnvelope, string url)
+        {
+            var webRequest = (HttpWebRequest)WebRequest.Create(url);
+            webRequest.InitializeWebRequest();
+
+            webRequest.InsertSOAPEnvelope(_xmlDocSOAPEnvelope);
+
+            return webRequest;
+        }
+
+        public static void InitializeWebRequest(this HttpWebRequest webRequest,
+            string header = "SOAP:Action",
+            string contentType = "text/xml;charset=\"utf-8\"",
+            string accept = "text/xml",
+            string method = "POST")
+        {
+            ThrowIfNullOrEmpty(header, nameof(header));
+            ThrowIfNullOrEmpty(contentType, nameof(contentType));
+            ThrowIfNullOrEmpty(accept, nameof(accept));
+            ThrowIfNullOrEmpty(method, nameof(method));
+
+            webRequest.Headers.Add(header);
+            webRequest.ContentType = contentType;
+            webRequest.Accept = accept;
+            webRequest.Method = method;
+        }
+
+        private static void ThrowIfNullOrEmpty(string value, string paramName = null)
+        {
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentException(paramName);
+        }
+
+        private static void ThrowIfNull(object value, string paramName = null)
+        {
+            if (value == null)
+                throw new ArgumentNullException(paramName);
         }
     }
 }

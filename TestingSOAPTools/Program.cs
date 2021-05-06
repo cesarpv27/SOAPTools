@@ -8,9 +8,20 @@ namespace TestingSOAPTools
 {
     class Program
     {
+        static string url;
+        static string action;
         static void Main()
         {
-            Console.WriteLine(AddUsingWebService(1, 1));
+            url = "http://www.dneonline.com/calculator.asmx";
+            action = "Add";
+
+            Console.WriteLine("Executing request...");
+            Console.WriteLine();
+
+            var Response = AddUsingWebService(1, 1);
+
+            Console.WriteLine($"{nameof(Response)}:");
+            Console.WriteLine(Response);
 
             // url: http://www.dneonline.com/calculator.asmx
             // action: Add
@@ -44,38 +55,36 @@ namespace TestingSOAPTools
 
         public static string AddUsingWebService(int A, int B)
         {
-            var url = "http://www.dneonline.com/calculator.asmx";
-            var action = "Add";
-
-            var _xmlDocSOAPEnvelope = CreateSoapEnvelope(A, B, action);
-
-            var request = CreateWebRequest(url, action, _xmlDocSOAPEnvelope);
-
-            using (WebResponse Serviceres = request.GetResponse())
-            {
-                using (var _streamReader = new StreamReader(Serviceres.GetResponseStream()))
+            var _xmlDocSOAPEnvelope = new XmlDocument();
+            _xmlDocSOAPEnvelope.BuildNLoadSOAPEnvelope(
+                new
                 {
-                    var result = _streamReader.ReadToEnd();
+                    intA = A,
+                    intB = B
+                }, 
+                action);
 
-                    return result;
-                }
-            }
+            var request = _xmlDocSOAPEnvelope.CreateWebRequest(url);
+
+            using WebResponse response = request.GetResponse();
+            return response.GetResponse();
         }
 
-        private static HttpWebRequest CreateWebRequest(string url, string action, XmlDocument _xmlDocSOAPEnvelope)
+        public static string AddUsingWebService_2(int A, int B)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(url);
-            webRequest.Headers.Add("SOAP:Action");
-            webRequest.ContentType = "text/xml;charset=\"utf-8\"";
-            webRequest.Accept = "text/xml";
-            webRequest.Method = "POST";
+            var _xmlDocSOAPEnvelope = CreateSOAPEnvelope(A, B, action);
 
-            webRequest.InsertSOAPEnvelope(_xmlDocSOAPEnvelope);
+            var request = _xmlDocSOAPEnvelope.CreateWebRequest(url);
 
-            return webRequest;
+            using WebResponse Serviceres = request.GetResponse();
+            using var _streamReader = new StreamReader(Serviceres.GetResponseStream());
+
+            var result = _streamReader.ReadToEnd();
+
+            return result;
         }
 
-        private static XmlDocument CreateSoapEnvelope(int A, int B, string methodName)
+        private static XmlDocument CreateSOAPEnvelope(int A, int B, string methodName)
         {
             var _xmlDocSOAPEnvelope = new XmlDocument();
             var xmlEnvelope = SOAPRequestBuilder.STBuildEnvelope(
