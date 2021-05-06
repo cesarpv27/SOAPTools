@@ -29,10 +29,14 @@ namespace SOAPTools.Core
                 return _streamReader.ReadToEnd();
         }
 
-        public static HttpWebRequest CreateWebRequest(this XmlDocument _xmlDocSOAPEnvelope, string url)
+        public static HttpWebRequest CreateWebRequest(this XmlDocument _xmlDocSOAPEnvelope, string url,
+            string header = "SOAP:Action",
+            string contentType = "text/xml;charset=\"utf-8\"",
+            string accept = "text/xml",
+            string httpMethod = "POST")
         {
             var webRequest = (HttpWebRequest)WebRequest.Create(url);
-            webRequest.InitializeWebRequest();
+            webRequest.InitializeWebRequest(header, contentType, accept, httpMethod);
 
             webRequest.InsertSOAPEnvelope(_xmlDocSOAPEnvelope);
 
@@ -43,17 +47,17 @@ namespace SOAPTools.Core
             string header = "SOAP:Action",
             string contentType = "text/xml;charset=\"utf-8\"",
             string accept = "text/xml",
-            string method = "POST")
+            string httpMethod = "POST")
         {
             ThrowIfNullOrEmpty(header, nameof(header));
             ThrowIfNullOrEmpty(contentType, nameof(contentType));
             ThrowIfNullOrEmpty(accept, nameof(accept));
-            ThrowIfNullOrEmpty(method, nameof(method));
+            ThrowIfNullOrEmpty(httpMethod, nameof(httpMethod));
 
             webRequest.Headers.Add(header);
             webRequest.ContentType = contentType;
             webRequest.Accept = accept;
-            webRequest.Method = method;
+            webRequest.Method = httpMethod;
         }
 
         private static void ThrowIfNullOrEmpty(string value, string paramName = null)
