@@ -2,33 +2,26 @@
                   
         url: http://www.dneonline.com/calculator.asmx
         action: Add
+             
+            Now making a SOAP request is as simple as this:
+            C#:           
+                public static string AddUsingWebService(int A, int B)
+                {  
+                    return SOAPRequestBuilder.STRequestSOAPService(new
+                    { 
+                       intA = 1,
+                       intB = 1
+                    }, url, action);
+                }
             
-        Now making a SOAP request is as simple as this:
-        C#:    
-        public static string AddUsingWebService(int A, int B)
-        {
-            var _xmlDocSOAPEnvelope = new XmlDocument();
-            _xmlDocSOAPEnvelope.BuildNLoadSOAPEnvelope(
-                new
-                {
-                    intA = A,
-                    intB = B
-                }, 
-                action);
-
-            var request = _xmlDocSOAPEnvelope.CreateWebRequest(url);
-
-            using WebResponse response = request.GetResponse();
-            return response.ReadResponse();
-        }
-                
+            Using BuildEnvelope method:
             C#:
                 var xmlEnvelope = SOAPRequestBuilder.STBuildEnvelope(
                 new
                 {
                     intA = 1,
                     intB = 1
-                }, methodName);
+                }, action);
                 
             Built envelope by SOAPRequestBuilder:
             
@@ -64,7 +57,7 @@
                 {
                     intA,
                     intB
-                }, methodName);
+                }, action);
                 
               
 
