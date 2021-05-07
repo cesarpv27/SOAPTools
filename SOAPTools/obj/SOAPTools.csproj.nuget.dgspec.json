@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\Users\\wolf\\Documents\\Visual Studio Projects\\Git\\SOAPTools\\SOAPTools\\SOAPTools.csproj": {
-      "version": "1.0.7",
+      "version": "1.0.8",
       "restore": {
         "projectUniqueName": "C:\\Users\\wolf\\Documents\\Visual Studio Projects\\Git\\SOAPTools\\SOAPTools\\SOAPTools.csproj",
         "projectName": "SOAPTools.Core.SOAPRequestBuilder",
@@ -43,10 +43,6 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "dependencies": {
-            "Microsoft.CSharp": {
-              "target": "Package",
-              "version": "[4.7.0, )"
-            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
