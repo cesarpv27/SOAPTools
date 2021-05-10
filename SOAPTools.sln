@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOAPTools", "SOAPTools\SOAPTools.csproj", "{14A4AFF1-ABD0-4F17-AE64-220E22B18A22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingSOAPTools", "TestingSOAPTools\TestingSOAPTools.csproj", "{7CBDE260-AB5F-4DFD-8623-62B0BE67873D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingSOAPTools", "TestingSOAPTools\TestingSOAPTools.csproj", "{7CBDE260-AB5F-4DFD-8623-62B0BE67873D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

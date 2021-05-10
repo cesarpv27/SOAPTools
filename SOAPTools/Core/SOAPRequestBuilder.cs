@@ -19,6 +19,25 @@ namespace SOAPTools.Core
 
         #region RequestSOAPService
 
+        /// <summary>
+        /// Build a SOAP request.
+        /// 
+        /// <para>Making a SOAP request could be like this:</para>
+        /// <para></para>
+        /// <para>url: http://www.dneonline.com/calculator.asmx </para>
+        /// <para>action: Add</para>
+        /// <para>C#:</para>
+        /// <para>var soapResponse = SOAPRequestBuilder.STRequestSOAPService(new { intA = 1, intB = 1 }, url, action);</para>
+        ///     
+        /// </summary>
+        /// <param name="paramsContainer">Any property of 'paramsContainer' object will be transformed in parameter of target http method of request</param>
+        /// <param name="url">Target SOAP url</param>
+        /// <param name="action">Target SOAP method</param>
+        /// <param name="header">Http header associated with a request</param>
+        /// <param name="contentType">Http Content-type associated with a request</param>
+        /// <param name="accept">Http Accept  associated with a request</param>
+        /// <param name="httpMethod">Http method associated with a request</param>
+        /// <returns>Response read as text</returns>
         public static string STRequestSOAPService(object paramsContainer, string url, string action,
             string header = DefaultConst.Header,
             string contentType = DefaultConst.ContentType,
@@ -28,6 +47,25 @@ namespace SOAPTools.Core
             return GetSOAPRequestBuilder().RequestSOAPService(paramsContainer, url, action, header, contentType, accept, httpMethod);
         }
 
+        /// <summary>
+        /// Build a SOAP request.
+        /// 
+        /// <para>Making a SOAP request could be like this:</para>
+        /// <para></para>
+        /// <para>url: http://www.dneonline.com/calculator.asmx </para>
+        /// <para>action: Add</para>
+        /// <para>C#:</para>
+        /// <para>var soapResponse = new SOAPRequestBuilder().RequestSOAPService(new { intA = 1, intB = 1 }, url, action);</para>
+        ///     
+        /// </summary>
+        /// <param name="paramsContainer">Any property of 'paramsContainer' object will be transformed in parameter of target http method of request</param>
+        /// <param name="url">Target SOAP url</param>
+        /// <param name="action">Target SOAP method</param>
+        /// <param name="header">Http header associated with a request</param>
+        /// <param name="contentType">Http Content-type associated with a request</param>
+        /// <param name="accept">Http Accept  associated with a request</param>
+        /// <param name="httpMethod">Http method associated with a request</param>
+        /// <returns>Response read as text</returns>
         public virtual string RequestSOAPService(object paramsContainer, string url, string action,
             string header = DefaultConst.Header,
             string contentType = DefaultConst.ContentType,
@@ -47,11 +85,35 @@ namespace SOAPTools.Core
 
         #region BuildEnvelope
 
+        /// <summary>
+        /// Build envelope of SOAP request.
+        /// 
+        /// <para>Sample:</para>
+        /// <para>C#:</para>
+        /// <para>var xmlEnvelope = SOAPRequestBuilder.STBuildEnvelope(new { intA = 1, intB = 1 }, action);</para>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="paramsContainer">Any property of 'paramsContainer' object will be transformed in parameter of target http method of request</param>
+        /// <param name="action">Target SOAP method</param>
+        /// <returns>Envelope as text</returns>
         public static string STBuildEnvelope<T>(T paramsContainer, string action) where T : class
         {
             return GetSOAPRequestBuilder().BuildEnvelope(paramsContainer, action);
         }
 
+        /// <summary>
+        /// Build envelope of SOAP request.
+        /// 
+        /// <para>Sample:</para>
+        /// <para>C#:</para>
+        /// <para>var xmlEnvelope = new SOAPRequestBuilder().BuildEnvelope(new { intA = 1, intB = 1 }, action);</para>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="paramsContainer">Any property of 'paramsContainer' object will be transformed in parameter of target http method of request</param>
+        /// <param name="action">Target SOAP method</param>
+        /// <returns>Envelope as text</returns>
         public virtual string BuildEnvelope<T>(T paramsContainer, string action) where T : class
         {
             return BuildEnvelope(BuildHeader(string.Empty) + BuildBody(BuildSoapAction(action, BuildSoapParams(paramsContainer))));

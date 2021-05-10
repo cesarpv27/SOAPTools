@@ -1,15 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <!--<TargetFramework>netstandard2.0</TargetFramework>
+    <Description>To build a SOAP request and more. Target framework: Netstandard2.0</Description>
+    <PackageId>SOAPTools.Core.SOAPRequestBuilder</PackageId>-->
+    <TargetFramework>net462</TargetFramework>
+    <Description>To build a SOAP request and more. Target framework: Net462</Description>
+    <PackageId>SOAPTools.Core.SOAPRequestBuilder.net462</PackageId>
+    
     <Authors>César Palomino Vila</Authors>
     <Company>César Palomino Vila</Company>
     <Product>SOAPRequestBuilder</Product>
-    <Description>To build a SOAP request. Target framework: .Net Standard 2.0</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/cesarpv27/SOAPTools</PackageProjectUrl>
-    <PackageId>SOAPTools.Core.SOAPRequestBuilder</PackageId>
-    <Version>1.0.8</Version>
+    <Version>1.0.10</Version>
   </PropertyGroup>
 
 </Project>
